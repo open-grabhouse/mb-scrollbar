@@ -14,7 +14,11 @@ angular.module('mb-scrollbar', [])
         },
         template: "<div class='ngscroll-resizable' style='position: relative; width: 100%; height: 100%;'> <div class='ngscroll-container' style='width: 100%; height: 100%;' ng-transclude></div> <div class='ngscroll-scrollbar-container' ng-style='styles.scrollbarContainer'><div class='ngscroll-scrollbar' ng-style='styles.scrollbar'></div></div> </div>",
         link: function(scope, element) {
-
+            // Check if scroll need to be disabled	
+	    if (scope.config && scope.config.disableScroll) {
+          	return;
+            }
+            
             // Helper functions
             function ifVertElseHor(vertical, horizontal) {
                 return config.direction == 'horizontal' ? horizontal : vertical;
